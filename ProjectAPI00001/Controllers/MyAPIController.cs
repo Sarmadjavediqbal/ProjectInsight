@@ -48,10 +48,16 @@ namespace ProjectAPI00001.Controllers
         [HttpPost]
         public async Task<ActionResult<Table1>> PostData(Table1 data)
         {
+            var request = new Table1(
+                data.SensorId,
+                data.SensorData,
+                data.SensorName
+            );
+
             _dbContext.Table1.Add(data);
             await _dbContext.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetData), new { id = data.Id }, data);
+            return CreatedAtAction(nameof(GetData), new { id = request.Id }, request);
         }
 
         [HttpPut("{id}")]

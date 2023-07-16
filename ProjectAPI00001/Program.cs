@@ -1,7 +1,23 @@
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
 
 var builder = WebApplication.CreateBuilder(args);
+
+/*var configuration = new ConfigurationBuilder()
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables()
+                .Build();
+var appUrl = configuration["applicationUrl"].Split(";").First();*/
+
+// static IWebHost BuildWebHost(string[] args) =>
+//         WebHost.CreateDefaultBuilder(args)
+//             .UseStartup<Startup>()
+//             .UseUrls("http://10.0.2.245:2221") // change your custom port
+//             .Build();
+
+// BuildWebHost(args).Run();
 
 // Add services to the container.
 
@@ -31,11 +47,12 @@ var app = builder.Build();
 // }
 
 app.UseSwagger();
-app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-        c.RoutePrefix = string.Empty;
-    });
+app.UseSwaggerUI();
+// app.UseSwaggerUI(c =>
+//     {
+//         c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
+//         c.RoutePrefix = string.Empty;
+//     });
 
 app.UseHsts();
 

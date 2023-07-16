@@ -5,12 +5,18 @@ namespace ProjectAPI00001.Models
 {
     public class Table1
     {
-        [Key]
-        [Column("id")]
-        public int Id { get; set; }
+        public Table1(int sensorId, double? sensorData, string? sensorName)
+        {
+            SensorId = sensorId;
+            SensorData = sensorData;
+            SensorName = sensorName;
+        }
 
-        [Column("uniqueId")]
-        public Guid UniqueId { get; set; }
+        [Column("id")]
+        public int Id { get; internal set;}
+
+        [Column("sensor_id")]
+        public int SensorId { get; set; }
 
         [Column("sensor_data")]
         public double? SensorData { get; set; }
@@ -19,7 +25,6 @@ namespace ProjectAPI00001.Models
         public string? SensorName { get; set; }
 
         [Column("created_at")]
-        public DateTime? CreatedAt { get; set; }
-
+        public DateTime CreatedAt { get; internal set; } = DateTime.Now;
     }
 }
